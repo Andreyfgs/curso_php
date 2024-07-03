@@ -46,19 +46,31 @@ if($resultado != ""){
 
 // Testa se a pessoa pode fazer a carteira de motorista
 // Precisa ser maior de 18 anos, e ter mais de R$ 1.000,00
+
+
+
+//Falta fazer a validação da idade e do dinheiro
+// se não tiver idade informar que precisa ser maior de 18
+//se não tiver dinheiro precisa informar o valor de 1k
+// se não tiver idade e nem dinheiro informar.
 $idadePessoa=18;
 $dinheiroNaCarteira=1000;
 
 
 echo "<br>";
 if($idadePessoa >= 18 && $dinheiroNaCarteira >= 1000){
-    echo "Parabéns, você pode fazer a carteira de motorista!";
-}else {
-    echo "Não pode dirigir"
+    echo "<br>Parabéns, você pode fazer a carteira de motorista!";
+}
+elseif($idadePessoa < 18 && $dinheiroNaCarteira >= 1000){
+    echo "<br>Tem que ter 18 anos para fazer a carteira de motorista.";
+}elseif($idadePessoa >= 18 && $dinheiroNaCarteira < 1000){
+    echo "<br>Deve ter 1000 reais para fazer a carteira de motorista.";
+}elseif($idadePessoa < 18 && $dinheiroNaCarteira < 1000){
+    echo "<br>Deve ter 18 anos e o valor de 1000 reais para fazer a carteira.";
+}else{
+    echo "Você não tem a idade o suficiente e nem economizou dinheiro para fazer a carteira.<br> ";
 }
 
-//Falta fazer a validação da idade e do dinheiro
-// se não tiver idade informar que precisa ser maior de 18
-//se não tiver dinheiro precisa informar o valor de 1k
-// se não tiver idade e nem dinheiro informar.
+echo "<br>";
+echo "Modelo do chatGPT<br>";
 ?>
