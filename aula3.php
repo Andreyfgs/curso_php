@@ -24,7 +24,7 @@ echo strtolower("<br>LETS GO");
 
 echo "<Tudo sobre a data atual<br>";
 echo "<br>";
-echo date("d/m/Y");
+echo date("d/m/Y"); //dia/mês/ano
 echo "<br>";
 echo date("H:i:s");
 echo "<br>";
