@@ -7,5 +7,8 @@ $resultado = "";
 
 for ($i = 1; $i <=10 ; $i++ ) 
   { 
-    echo $resultado = $numero * $i . "<br>";
+  
+  $resultado = $numero * $i;
+  echo "$numero x $i = $resultado" . "<br>";
+  
   }
