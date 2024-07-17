@@ -10,5 +10,12 @@ for ($i = 1; $i <=10 ; $i++ )
   
   $resultado = $numero * $i;
   echo "$numero x $i = $resultado" . "<br>";
-  
+   
+    
+    $numero = 8;
+$i = 1;
+while ($i <=9){
+    echo "$numero x $i =" . $numero * $i . "<br>";
+    $i++;
+}
   }
