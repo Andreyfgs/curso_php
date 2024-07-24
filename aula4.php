@@ -14,7 +14,7 @@ for ($i = 1; $i <=10 ; $i++ )
     
     $numero = 8;
 $i = 1;
-while ($i <=9){
+while ($i <=10 ){
     echo "$numero x $i =" . $numero * $i . "<br>";
     $i++;
 }

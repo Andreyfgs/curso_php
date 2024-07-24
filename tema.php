@@ -12,6 +12,8 @@
 // Usando o laço While
 
 // Soma dos PARES
+/*echo "<strong>Exercício usando o laço WHILE</strong>";
+echo "<br>";
 $i = 1;
 $soma = 0;
     
@@ -22,7 +24,7 @@ $soma = 0;
     } $i++;
 } echo "A soma de todos os números pares é = ". $soma;
 
-echo "<hr>";
+echo "<br>";
 // Soma dos ímpares
 $i = 1;
 $resultado = 0;
@@ -32,10 +34,14 @@ $resultado = 0;
     if ($resto == 1){ //se sobrar 1 é ímpar
     $resultado = $resultado + $i;
     } $i++;
-} echo " A soma de todos os números ímpares é = ". $resultado;
+} echo " A soma de todos os números ímpares é = ". $resultado."<br>";
 
-echo "<hr>";
+echo "<br>";
+
 // Usando o laço FOR
+echo "<strong>Exercício usando o laço FOR</strong>";
+echo "<br>";
+
 $somaDosPares = 0;
 $somaDosImpares = 0;
 
@@ -48,8 +54,8 @@ $somaDosImpares = 0;
     }
 } 
 echo "A soma do par é $somaDosPares<br>";   
-echo "A soma dos Impares é $somaDosImpares";
-
+echo "A soma dos Impares é $somaDosImpares<br>";
+echo "<br>";
 //Outra forma
 /* 
 $somadospares = 0;
@@ -61,4 +67,17 @@ $somadosimpares = 0;
     }else {
     $somadosimpares += $i;
     }*/
+
+    echo "<strong>Tabuada legal</strong>";
+    
+    for($tabuada=1; $tabuada <= 10; $tabuada++) {
+        echo "<br> Tabuada do $tabuada <br>";
+     // Inicia o laço interno para multiplicar a tabuada por 0-10   
+    for($n=0; $n <=10; $n++){
+        echo "$tabuada x $n = " . $tabuada*$n . "<br>";
+        }
+    
+    }  
+
+    
 
