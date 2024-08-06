@@ -52,7 +52,7 @@ for ($i = 0; $i < 100; $i++) {
 }
 
 $vetorPar = []; 
-for ($i = 100; $i >= 0; $i -= 2) {
+for ($i = 100; $i >= 0; $i -= 2) { // ou $i = $i - 2
     $vetorPar[] = $i;
 } 
 
