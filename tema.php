@@ -53,12 +53,12 @@ for ($i = 0; $i < 100; $i++) {
 
 $vetorPar = []; 
 for ($i = 100; $i >= 0; $i -= 2) { // ou $i = $i - 2
-    $vetorPar[] = $i;
+    $vetorPar[] = $i;  //adicionando o valor $i no $vetorPar[]
 } 
 
 echo "<strong>Números pares do 100 ao 0;</strong> ";
 for ($p = 0; $p < count($vetorPar); $p++) {
-    echo $vetorPar[$p] . ",";
+    echo $vetorPar[$p] . ",";  // mostrando os valores do $p no $vetorPar[]
 } //for para mostrar os numeros pares.
 
 $vetorImpar = [];
