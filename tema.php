@@ -1,6 +1,6 @@
 <?php
 
-//alterar a ordem para descrescente usando outro FOR.
+/*//alterar a ordem para descrescente usando outro FOR.
 //PELO MENOS 3 VARIAVEIS (AREA DE TRANSFERENCIA, DESTINO )
 
 $vetor = array();
@@ -33,4 +33,41 @@ for($t = 0; $t <= count($vetorPar); $t++) {
  
 for($p = 0; $p < count($vetorImpar); $p++) {}
 
-//METODOS DE ORDENAR UM ARRAY EX:BUBLLE SORT. nome MATUSSTAFURA/BUBBLE
+//METODOS DE ORDENAR UM ARRAY EX:BUBLLE SORT. nome MATUSSTAFURA/BUBBLE*/
+
+$pares = 0;
+$impares = 0;
+$vetorPar = [];
+$vetorImpar = [];
+
+
+for ($i = 0; $i < 100; $i++) {
+    if ($i % 2 == 0) {
+        $pares += $i;
+        $vetorPar[] = $i;
+    } else {
+        $impares += $i;
+        $vetorImpar[] = $i; 
+    } 
+}
+
+$vetorPar = []; 
+for ($i = 100; $i >= 0; $i -= 2) {
+    $vetorPar[] = $i;
+} 
+
+echo "<strong>Números pares do 100 ao 0;</strong> ";
+for ($p = 0; $p < count($vetorPar); $p++) {
+    echo $vetorPar[$p] . ",";
+} //for para mostrar os numeros pares.
+
+$vetorImpar = [];
+for ($i= 99; $i >= 0; $i -= 2) {
+    $vetorImpar[] = $i;
+}
+
+echo "<br><strong>Números Impares do 100 ao 0</strong> ";
+for ($y = 0; $y <= count($vetorImpar); $y++){
+    echo $vetorImpar[$y]. ",";
+} //for para mostrar os números ímpares.
+
