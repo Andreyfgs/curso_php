@@ -7,11 +7,11 @@ $somaDosImpares = 0;
 $vetorPar = [];
 $vetorImpar = [];
 
-for ($i =1; $i < 100; $i++) {
+for ($i =0; $i <= 100; $i++) {
     if ($i % 2 == 0) {
         
         $somaDosPares += $i;
-        // $vetorPar = array_push($vetorPar, $i);
+                                    // $vetorPar = array_push($vetorPar, $i);
         $vetorPar[] = $i;
         
         
