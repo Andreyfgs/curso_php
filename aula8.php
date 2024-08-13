@@ -26,13 +26,22 @@ for ($i = 0; $i > $maxindice; $i++) {
   as medida informada forma o triangulo tal...
   
   */
-$lado1 = 0;
-$lado2 = 5;
-$lado3 = 0;
-$lados = 0;
-if($lados == $lado1 && $lado2 && $lado3){
-    echo "É um triângulo Equilatero";
-}else {
-    echo "Não é um Trinângulo Equilatero";
+$lado1 = 1;
+$lado2 = 2;
+$lado3 = 2;
+echo "<strong>Qual é o triangulo informado:</strong>";
+echo "<br> lado1 = " . $lado1; 
+echo "<br> lado2 = " . $lado2; 
+echo "<br> lado3 = " . $lado3; 
+echo "<br>";
+echo "Conforme as medidas o triângulo é um ";
+if ($lado1 == $lado2 && $lado2 == $lado3){
+    echo "triangulo equilátero";  
+}elseif ($lado1 != $lado2 && $lado1 != $lado3 && $lado2 != $lado3){
+    echo "triangulo escaleno";
+}elseif ($lado1 == $lado2 && $lado2 != $lado3 ){
+    echo "triangulo isóceles";
+}elseif ($lado2 == $lado3 && $lado2 != $lado1 ){
+    echo "triangulo isóceles";
 }
   
