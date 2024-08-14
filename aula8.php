@@ -16,8 +16,11 @@ for ($i = 0; $i > $maxindice; $i++) {
     }
 }
   echo implode("," , $vetoralf);
-
-  /*
+ echo "<br>";
+  
+ 
+                                             //Tema da aula 8
+ /*
   identificar o tipo de triangulo conforme os dados passados pelo usuario.
   sendo três medidas: $a, $b, $c. tres variaveis.... $lado1, $lado2, $lado3.
   Com estas medidas efetuar o calculo e informar ao usuario qual o tipo de triangulo que é formado pelas medidas que ele passou.
@@ -28,20 +31,23 @@ for ($i = 0; $i > $maxindice; $i++) {
   */
 $lado1 = 1;
 $lado2 = 2;
-$lado3 = 2;
+$lado3 = 3;
 echo "<strong>Qual é o triangulo informado:</strong>";
-echo "<br> lado1 = " . $lado1; 
-echo "<br> lado2 = " . $lado2; 
-echo "<br> lado3 = " . $lado3; 
+
+echo "<br> lado1 : " . $lado1; 
+echo "<br> lado2 : " . $lado2; 
+echo "<br> lado3 : " . $lado3; 
+
 echo "<br>";
+
 echo "Conforme as medidas o triângulo é um ";
 if ($lado1 == $lado2 && $lado2 == $lado3){
     echo "triangulo equilátero";  
 }elseif ($lado1 != $lado2 && $lado1 != $lado3 && $lado2 != $lado3){
     echo "triangulo escaleno";
-}elseif ($lado1 == $lado2 && $lado2 != $lado3 ){
+}elseif (($lado1 == $lado2 && $lado1 != $lado3 ) || ($lado2 == $lado3 && $lado2 !=$lado1) || ($lado3 == $lado1 && $lado3 != $lado2)){
     echo "triangulo isóceles";
-}elseif ($lado2 == $lado3 && $lado2 != $lado1 ){
-    echo "triangulo isóceles";
+} else {
+    echo "As medidas não formam um triângulo.";
 }
   
