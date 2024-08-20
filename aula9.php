@@ -108,7 +108,7 @@ echo "<br>";
  * Deposito, Saque, Extrato(saldo)
  */ //&$saldoAtual vai ser o mesmo valor dentro ou fora do escopo  (ponteiro) 
 
- function banco($operacao, $saldoAtual){ 
+ /*function banco($operacao, $saldoAtual){ 
  
  $saldo = $saldoAtual;
     if ($operacao == "extrato"){
@@ -127,4 +127,35 @@ $saldoAtual = 50;
  
  $operação = "saque";
  $saldoAtual = banco($valor, $operacao, $saldoAtual);
- echo "extrato: $valor $operacao = $saldoAtual<br>";
+ echo "extrato: $valor $operacao = $saldoAtual<br>";*/
+
+
+function banco($valor, $operacao, $saldoAtual) {
+    
+  $mensagens = "";
+    
+    if ($operacao == "deposito") {
+        $saldoAtual += $valor; // Adiciona o valor ao saldo atual
+        $mensagens = "Depósito de $valor realizado; Saldo atual: $saldoAtual";
+    } elseif ($operacao == "saque") {
+        $saldoAtual -= $valor; // Subtrai o valor do saldo atual
+        $mensagens = "Saque de $valor realizado; Saldo atual: $saldoAtual";
+    } else {
+        $mensagens = "Operação inválida.";
+    }
+    return $mensagens; 
+}
+
+$saldoAtual = 500;
+$valor = 250;
+
+// depósito
+$operacao = "deposito";
+$mensagens = banco($valor, $operacao, $saldoAtual);
+echo "$mensagens<br>";
+
+// saque
+$operacao = "saque";
+$mensagens = banco($valor, $operacao, $saldoAtual);
+echo "$mensagens<br>";
+?>
