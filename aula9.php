@@ -129,9 +129,11 @@ $saldoAtual = 50;
  $saldoAtual = banco($valor, $operacao, $saldoAtual);
  echo "extrato: $valor $operacao = $saldoAtual<br>";*/
 
+ echo "<br>";
 
-function banco($valor, $operacao, $saldoAtual) {
-    
+ echo "<strong>Sistema bancário</strong><br>";
+ function banco($valor, $operacao, &$saldoAtual) {
+   
   $mensagens = "";
     
     if ($operacao == "deposito") {
@@ -140,8 +142,9 @@ function banco($valor, $operacao, $saldoAtual) {
     } elseif ($operacao == "saque") {
         $saldoAtual -= $valor; // Subtrai o valor do saldo atual
         $mensagens = "Saque de $valor realizado; Saldo atual: $saldoAtual";
-    } else {
-        $mensagens = "Operação inválida.";
+    }elseif ($valor <=0){
+        echo "O valor de deposito deve ser positivo"; 
+        
     }
     return $mensagens; 
 }
@@ -156,6 +159,9 @@ echo "$mensagens<br>";
 
 // saque
 $operacao = "saque";
-$mensagens = banco($valor, $operacao, $saldoAtual);
+$mensagens = banco($valor, $operacao, $saldoAtual); // função banco executa e fica amazenada na varoavel $mensagens.
 echo "$mensagens<br>";
+
+// validar para não ter deposito vazio.
+// não pode sacar mais que tem na conta.
 ?>
