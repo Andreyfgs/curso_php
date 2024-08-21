@@ -1,5 +1,5 @@
 <?php
-
+//validação de dados sempre em primeiro.
 function banco($valor, $operacao, $saldoAtual) {
 
     $saldo = $saldoAtual;
@@ -8,12 +8,12 @@ function banco($valor, $operacao, $saldoAtual) {
         return $saldo;
     }
 
-    if( $operacao == "saque" && ($valor <=0 || $valor == "")){
-        return "<br>O valor do saque é maior que o seu saldo atual <br>";
+    if( $operacao == "saque" && ($valor <=0 || $valor == "")){ // poderia usar o 
+        return "<br>Não é possivel efetuaar o saque, informe um valor. <br>";
     }
 
     if( $operacao == "saque" && $valor > $saldoAtual){
-        return "<br>O valor do saque é maior que o seu saldo atual <br>";
+        return "<br>Não é possivel efetuaar o saque, o seu saldo é: $saldoAtual o valor sacado é: <br>";
     }
 
     if ($operacao == "saque") {
@@ -22,7 +22,7 @@ function banco($valor, $operacao, $saldoAtual) {
     }
 
 
-    if($operacao == "deposito" && ($valor <=0 || $valor == "") ){
+    if($operacao == "deposito" && ($valor <=0 || $valor == "") ){ // entre () sempre ira executar primeiro tudo que está dentro de ().
         return "<br>O valor do deposito deve ser positivo<br> ";    
     }
 
@@ -57,3 +57,23 @@ echo "$operacao = $valor, Extrato: $saldoAtual<br>";*/
 
 // validar para não ter deposito vazio.
 // não pode sacar mais que tem na conta.
+
+//funcões separadas aonde cada uma vai receber uma string, esse função deve fazer uma validação, verdadeira ou falsa. validar cpf e um cnpj.
+// dica: isValidCPF, isValidCNPJ.
+/**tem um calculo para fazer um cpf
+ * Criar duas funções (separadas) onde cada uma recebe um parametro(string)
+ * e retorna um valor boolean (true || false, 0 || 1).
+ * 
+ * objetivo: Validar CPF, CNPJ
+ * 
+ * CPF: "0000000000000" : 11 digitos
+ * CNPJ: "00000000000000" : 14 digitos
+ * 
+ * tudo igual ou repetido não conta, não pode ter mais digitos que o padrão
+ * ex: o cpf não pode conter mais que 11 digitos e menos que 11 digitos.
+ * não pode ter números repetidos
+ * dica: cpf 4dev 
+ * sempre como uma string
+ */
+
+ //function isValidCPF($CPF);

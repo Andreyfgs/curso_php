@@ -164,4 +164,6 @@ echo "$mensagens<br>";
 
 // validar para não ter deposito vazio.
 // não pode sacar mais que tem na conta.
+
+
 ?>
