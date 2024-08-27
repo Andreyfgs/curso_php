@@ -79,53 +79,50 @@ echo "$operacao = $valor, Extrato: $saldoAtual<br>";*/
  //function isValidCPF($CPF);
 
             //CPF
-
-    function isvalidCPF($cpf) {
-    // Remove todos os caracteres não numéricos
-    $cpf = preg_replace('/[^0-9]/', '', $cpf);
-    
-    // Verifica se o CPF possui 11 dígitos
-    if (strlen($cpf) != 11) {
-        return false;
+<?php
+function validaCPF($cpf) {
+   
+    // Verifica se o número foi informado
+    if(empty($cpf)) {
+        return "O CPF é obrigatório";
     }
-
-    // Verifica se todos os dígitos são iguais
+ 
+    // Elimina possível máscara
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
+    $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
+     
+    // Verifica se o número de dígitos informados é igual a 11
+    if (strlen($cpf) != 11) {
+        return "O CPF deve conter 11 dígitos";
+    }
+   // Verifica se todos os dígitos são iguais
     if (preg_match('/(\d)\1{10}/', $cpf)) {
         return false;
-    }
-
-    // Calcula e verifica o primeiro dígito verificador
-    for ($t = 9; $t < 11; $t++) {
-        $soma = 0;
-        for ($i = 0; $i < $t; $i++) {
-            $soma += $cpf[$i] * (($t + 1) - $i);
+     
+        // Calcula os dígitos verificadores para verificar se o
+     // CPF é válido
+     } else {   
+         
+        for ($t = 9; $t < 11; $t++) {
+             
+            for ($d = 0, $c = 0; $c < $t; $c++) {
+                $d += $cpf[$c] * (($t + 1) - $c);
+            }
+            $d = ((10 * $d) % 11) % 10;
+            if ($cpf[$c] != $d) {
+                return "CPF inválido";
+            }
         }
-        $resto = $soma % 11;
-        $digito = $resto < 2 ? 0 : 11 - $resto;
-        if ($cpf[$i] != $digito) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
-$cpf = [
-    '123.456.789-09', 
-    '111.111.111-11', 
-    '000.000.000-00', 
-    '056.552.020-26'  
-
-foreach ($cpfs as $cpf) {
-    if (isvalidCPF($cpf)) {
-        echo "CPF $cpf é válido.<br>";
-    } else {
-        echo "CPF $cpf é inválido.<br>";
+ 
+        return "CPF válido";
     }
 }
+$cpf = "12345678909";
+echo validaCPF($cpf);
+    
+
                         //CNPJ
-<?php
+
 function validarCnpj($cnpj) {
     // Remove caracteres não numéricos
     $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
