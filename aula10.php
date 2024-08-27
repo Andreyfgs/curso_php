@@ -78,7 +78,7 @@ echo "$operacao = $valor, Extrato: $saldoAtual<br>";*/
 
  //function isValidCPF($CPF);
 
-<?php
+            //CPF
 
     function isvalidCPF($cpf) {
     // Remove todos os caracteres não numéricos
@@ -124,4 +124,63 @@ foreach ($cpfs as $cpf) {
         echo "CPF $cpf é inválido.<br>";
     }
 }
+                        //CNPJ
+<?php
+function validarCnpj($cnpj) {
+    // Remove caracteres não numéricos
+    $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
+
+    // Verifica se o CNPJ tem 14 dígitos
+    if (strlen($cnpj) != 14) {
+        return false;
+    }
+
+    // Verifica se todos os dígitos são iguais
+    if (preg_match('/(\d)\1{13}/', $cnpj)) {
+        return false;
+    }
+
+    // Calcula o primeiro dígito verificador
+    $soma = 0;
+    $multiplicador = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    for ($i = 0; $i < 12; $i++) {
+        $soma += $cnpj[$i] * $multiplicador[$i];
+    }
+    $resto = $soma % 11;
+    $digito1 = ($resto < 2) ? 0 : 11 - $resto;
+
+    if ($cnpj[12] != $digito1) {
+        return false;
+    }
+
+    // Calcula o segundo dígito verificador
+    $soma = 0;
+    $multiplicador = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    for ($i = 0; $i < 13; $i++) {
+        $soma += $cnpj[$i] * $multiplicador[$i];
+    }
+    $resto = $soma % 11;
+    $digito2 = ($resto < 2) ? 0 : 11 - $resto;
+
+    return $cnpj[13] == $digito2;
+}
+
+// Exemplo de uso
+$cnpjs = [
+    '12.345.678/0001-95', // CNPJ inválido
+    '11.444.777/0001-61', // CNPJ válido fictício (exemplo)
+    '11.444.777/0001-00', // CNPJ inválido
+    '11.111.111/1111-11'  // CNPJ inválido
+];
+
+foreach ($cnpjs as $cnpj) {
+    if (validarCnpj($cnpj)) {
+        echo "CNPJ $cnpj é válido.<br>";
+    } else {
+        echo "CNPJ $cnpj é inválido.<br>";
+    }
+}
 ?>
+
+?>
+
