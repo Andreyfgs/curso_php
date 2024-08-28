@@ -196,10 +196,10 @@ function addMaskCNPJ($cnpj){
     for ($i=0; $i <= strlen($maskCPNJ); $i++){
             
         if($maskCPNJ[$i] == '#'){    
-            $cnpjMascarado .= $cnpj[$c]; // 056.552.020-26
+            $cnpjMascarado .= $cnpj[$c];
             $c++;
         } else {
-            $cnpjMascarado .= $maskCPNJ[$i]; // 056.552.020-
+            $cnpjMascarado .= $maskCPNJ[$i]; 
         }
     
     }
