@@ -13,7 +13,7 @@ function banco($valor, $operacao, $saldoAtual) {
     }
 
     if( $operacao == "saque" && $valor > $saldoAtual){
-        return "<br>Não é possivel efetuaar o saque, o seu saldo é: $saldoAtual o valor sacado é: <br>";
+        return "<br>Não é possivel efetuar o saque, o seu saldo é: $saldoAtual o valor sacado é: <br>";
     }
 
     if ($operacao == "saque") {
@@ -77,30 +77,29 @@ echo "$operacao = $valor, Extrato: $saldoAtual<br>";*/
  */
 
  //function isValidCPF($CPF);
-
+echo "<br>";
             //CPF
-<?php
-function validaCPF($cpf) {
+
+function validCPF($cpf) {
    
     // Verifica se o número foi informado
     if(empty($cpf)) {
-        return "O CPF é obrigatório";
+        return false;
     }
  
-    // Elimina possível máscara
+    // elimina qualquer outra coisa diferente de números
     $cpf = preg_replace('/[^0-9]/', '', $cpf);
     $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
      
     // Verifica se o número de dígitos informados é igual a 11
     if (strlen($cpf) != 11) {
-        return "O CPF deve conter 11 dígitos";
+        return false;
     }
    // Verifica se todos os dígitos são iguais
     if (preg_match('/(\d)\1{10}/', $cpf)) {
         return false;
      
-        // Calcula os dígitos verificadores para verificar se o
-     // CPF é válido
+        // Calcula os dígitos verificadores para verificar se o CPF é válido
      } else {   
          
         for ($t = 9; $t < 11; $t++) {
@@ -109,21 +108,60 @@ function validaCPF($cpf) {
                 $d += $cpf[$c] * (($t + 1) - $c);
             }
             $d = ((10 * $d) % 11) % 10;
-            if ($cpf[$c] != $d) {
-                return "CPF inválido";
+            if ($cpf[$c] !=  $d) {
+                return false;
             }
         }
  
-        return "CPF válido";
+        return true;
     }
 }
-$cpf = "12345678909";
-echo validaCPF($cpf);
+
+/**
+ * CPF: ###.###.###-## 14
+ * CPF: 05655202026 11
+ * CPF: 056.552.020-26 14
+ */
+function addMaskCPF($cpf){
+    $cpfMascarado = "";
+    $maskCPF = "###.###.###-##";
+
+    $a=0;
     
+    for ($i=0; $i <= strlen($maskCPF); $i++){
+            
+        if($maskCPF[$i] == '#'){    
+            $cpfMascarado .= $cpf[$a]; // 056.552.020-26
+            $a++;
+        } else {
+            $cpfMascarado .= $maskCPF[$i]; // 056.552.020-
+        }
+    
+    }
 
-                        //CNPJ
+    return $cpfMascarado;
+}
 
-function validarCnpj($cnpj) {
+$cpfMascarado = addMaskCPF($cpf);
+echo $cpfMascarado;
+
+$cpf = "05655202026";
+
+$cpfvalido = validcpf($cpf);
+$cpf = preg_replace('/[^0-9]/', '', $cpf);
+
+
+if($cpfvalido){
+    echo "O CPF: $cpf é valido.";
+}else {
+    echo "O CPF: $cpf é invalido.";
+}
+ 
+
+
+                               //CNPJ
+
+function validCnpj($cnpj) {
     // Remove caracteres não numéricos
     $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
 
@@ -150,6 +188,27 @@ function validarCnpj($cnpj) {
         return false;
     }
 
+function addMaskCNPJ($cnpj){
+    $cnpjMascarado= "";
+    $maskCPNJ = "##.###.###/####-##";
+    $c = 0;
+    
+    for ($i=0; $i <= strlen($maskCPNJ); $i++){
+            
+        if($maskCPNJ[$i] == '#'){    
+            $cnpjMascarado .= $cnpj[$c]; // 056.552.020-26
+            $c++;
+        } else {
+            $cnpjMascarado .= $maskCPNJ[$i]; // 056.552.020-
+        }
+    
+    }
+
+    return $cnpjMascarado;
+}
+
+
+
     // Calcula o segundo dígito verificador
     $soma = 0;
     $multiplicador = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
@@ -162,22 +221,16 @@ function validarCnpj($cnpj) {
     return $cnpj[13] == $digito2;
 }
 
-// Exemplo de uso
-$cnpjs = [
-    '12.345.678/0001-95', // CNPJ inválido
-    '11.444.777/0001-61', // CNPJ válido fictício (exemplo)
-    '11.444.777/0001-00', // CNPJ inválido
-    '11.111.111/1111-11'  // CNPJ inválido
-];
+$maskCPNJ = "##.###.###/####-##";
+$cnpj = '11.444.777/0001-61'; //'11.444.777/0001-61'
+$cnpj = preg_replace('/[^0-9]/', '', $cnpj);
 
-foreach ($cnpjs as $cnpj) {
-    if (validarCnpj($cnpj)) {
-        echo "CNPJ $cnpj é válido.<br>";
-    } else {
-        echo "CNPJ $cnpj é inválido.<br>";
-    }
+$cnpjvalido = validcnpj($cnpj);
+
+
+
+if($cnpjvalido) {
+    echo "<br>O CNPJ: $cnpj é valido.";
+} else {
+    echo "<br>O CNPJ: $cnpj é inválido";
 }
-?>
-
-?>
-
