@@ -1,5 +1,7 @@
 <?php
 
+<?php
+
 /**
  * Criar uma classe/objeto que representa um banco 
  * esta classe devera ter as operações basicas, como:
@@ -14,23 +16,23 @@
 
  class Banco{
 
-    public $saldo = 100;
-    public $extrato = "";
+    public $saldo = 2000;
+    public $valor = 1000;
     
-    function saque($valor, $saldoAtual){
+    public function saque($valor){
 
     if($valor <=0 || $valor == ""){ 
-        return "<br>Não é possivel efetuaar o saque, informe um valor. <br>";
+        return "<br>Não é possivel efetuar o saque, informe um valor. <br>";
     }
 
-    if( $valor > $saldoAtual){
-        return "<br>Não é possivel efetuar o saque, o seu saldo é: $saldoAtual o valor sacado é: <br>";
+    if( $valor > $saldo){
+        return "<br>Não é possivel efetuar o saque, o seu saldo é: $valor o valor sacado é: $saldo <br>";
     }
 
        $this->saldo -= $valor;
     }
    
-    function deposito($valor, $saldoAtual){
+   public function deposito($valor){
     
     $valor =  preg_replace("/[^0-9]/", "", $valor);
     
@@ -40,11 +42,39 @@
         $this->saldo += $valor;
     }   
 
-    function extrato($extrato, $valor, $saldoAtual){
-        
-        if($valor == $saldoAtual){
-            return $extrato;
-        }
+   public function extrato(){
+        return $this->saldo . $saldo;
     }
 
+    public function tranferencia($valor, $destinatario){
+
+        $valor =  preg_replace("/[^0-9]/", "", $valor);
+
+        if($valor <=0){
+            return "Não foi possivel realizar a transferência. Por favor, insira um valor válido.";
+        }
+
+        if($valor > $this->saldo){
+            return "Não foi possivel realizar a transferência. Por favor, insira um valor válido.";
+        }
+
+        $this->saldo -= $valor;
+    
+        return $this->transfCompleta($destinatario);
+    }
+
+    private function transfCompleta($destinatario) {
+        return "Transferência concluída";
+    }
  }
+
+ $banco = new Banco();
+ echo $banco->saque(20);
+ echo "Saldo após saque: " . $banco->extrato() . "<br>";
+ 
+ echo $banco->deposito(20);
+ echo "Saldo após depósito: " . $banco->extrato() . "<br>";
+ 
+ echo $banco->transferencia(200);
+ echo "Saldo após transferência: " . $banco->extrato() . "<br>";
+ 
