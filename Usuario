@@ -1,0 +1,13 @@
+<?php
+
+require './Conexao.php';
+require_once './Conexao.php'; //vamos utilizar somente este
+
+include './Conexao.php';
+include_once './Conexao.php';
+
+class Usuario {
+
+    // CRUD
+
+}
