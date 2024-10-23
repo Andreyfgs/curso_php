@@ -1,15 +1,23 @@
 <?php
 
-require './BaseModel.php';
+require '../database/Conexao.php';
 
-class UsuarioModel extends BaseModel {
+class PessoaModel extends BaseModel {
 
-    private $table = 'Usuario';
-    
+    private $table = 'Pessoa';
+
     private $fields = [
-        'cpf',
+        'nome',
+        'sobrenome',
+        'nome_completo',
         'email',
-        'senha',
+        'cpf',
+        'cnpj',
+        'sexo',
+        'tipo_pessoa',
+        'estado_civil',
+        'data_aniversario',
+        'id_usuario',
     ];
 
     public function create($values) {
@@ -48,22 +56,6 @@ class UsuarioModel extends BaseModel {
 
     public function delete($id) {
         $sql = ("DELETE FROM {$this->table} WHERE id = {$id};");
-    
-        return $this->execute($sql);
-    }
-    
-
-}
-
-$usuario = new UsuarioModel();
-
-$dados = $usuario->readAll();
-
-if ( !empty($dados)) {
-
-    foreach($dados[0] as $field => $value){
-
-        echo "{$field}: {$value} <br>";
     }
 
 }
